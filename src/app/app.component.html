@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A Pink Romantic Surprise for You</title>
+<style>
+  /* Simple, clean fonts */
+  
+  /* Reset & basics */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%);
+    color: #4a148c;
+    line-height: 1.6;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e91e63' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Loading Screen */
+  .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e91e63 0%, #f06292 50%, #f8bbd9 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-out;
+  }
+  
+  .loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .loading-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeInOut 2s infinite;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  
+  .loading-hearts {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .loading-heart {
+    font-size: 2rem;
+    animation: bounce 1.5s infinite;
+  }
+  
+  .loading-heart:nth-child(1) { animation-delay: 0s; }
+  .loading-heart:nth-child(2) { animation-delay: 0.3s; }
+  .loading-heart:nth-child(3) { animation-delay: 0.6s; }
+  .loading-heart:nth-child(4) { animation-delay: 0.9s; }
+  .loading-heart:nth-child(5) { animation-delay: 1.2s; }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+  }
+  a {
+    color: #c2185b;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: #e91e63;
+  }
+  
+  a::after {
+    content: "💖";
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  a:hover::after {
+    opacity: 1;
+    right: -20px;
+  }
+  
+  header {
+    background: linear-gradient(to right, #e91e63, #f06292, #e91e63);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 15px rgba(233, 30, 99, 0.3);
+    z-index: 100;
+    animation: headerGlow 3s infinite alternate;
+  }
+  
+  @keyframes headerGlow {
+    from { box-shadow: 0 2px 15px rgba(233, 30, 99, 0.3); }
+    to { box-shadow: 0 2px 25px rgba(233, 30, 99, 0.5), 0 0 30px rgba(255, 182, 193, 0.4) inset; }
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  nav a {
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(233, 30, 99, 0.1);
+    animation: fadeIn 1s ease-in;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #e91e63, #f06292, #e91e63);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: #880e4f;
+    text-align: center;
+    position: relative;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #c2185b;
+    animation: heartbeat 2s infinite;
+  }
+  
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    5% { transform: scale(1.1); }
+    10% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    20% { transform: scale(1); }
+    100% { transform: scale(1); }
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #e91e63;
+  }
+  
+  .message {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+    border-left: 5px solid #e91e63;
+    padding: 1.5rem 2rem;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px rgba(233, 30, 99, 0.2);
+    border-radius: 10px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .message::after {
+    content: "💖";
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.2rem;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  /* Gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 1.5rem;
+  }
+  
+  .gallery img {
+    width: 100%;
+    border-radius: 15px;
+    border: 3px solid #f06292;
+    box-shadow: 2px 2px 15px rgba(233, 30, 99, 0.2);
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.08);
+    box-shadow: 5px 5px 20px rgba(233, 30, 99, 0.4);
+    border-color: #e91e63;
+  }
+  
+  .gallery img::after {
+    content: "💖";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 1.5rem;
+  }
+  
+  .gallery img:hover::after {
+    opacity: 1;
+  }
+  
+  /* Contact form */
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+    padding: 2rem;
+    border: 2px solid #e91e63;
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px rgba(233, 30, 99, 0.2);
+    position: relative;
+  }
+  
+  form::before {
+    content: "💕";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #c2185b;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+  }
+  
+  form input, form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1.5px solid #f06292;
+    border-radius: 8px;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  form input:focus, form textarea:focus {
+    border-color: #e91e63;
+    box-shadow: 0 0 8px rgba(233, 30, 99, 0.3);
+    outline: none;
+  }
+  
+  form button {
+    background: linear-gradient(to right, #e91e63, #f06292, #e91e63);
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.2);
+  }
+  
+  form button:hover {
+    background: linear-gradient(to right, #c2185b, #e91e63, #c2185b);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(233, 30, 99, 0.3);
+  }
+  
+  form button:active {
+    transform: translateY(-1px);
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    color: #c2185b;
+    padding: 2rem;
+    font-style: italic;
+    border-top: 1px solid #f06292;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    background: linear-gradient(to right, #fce4ec, #f8bbd9, #fce4ec);
+  }
+  /* Floating hearts animation */
+  .floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .heart {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: float 8s linear infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    nav {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    section {
+      padding: 1rem;
+    }
+    .message {
+      padding: 1rem;
+    }
+    .loading-text {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+@if (showLoading) {
+<div class="loading-screen">
+  <div class="loading-text">Preparing something special for you...</div>
+  <div class="loading-hearts">
+    <div class="loading-heart">💖</div>
+    <div class="loading-heart">💕</div>
+    <div class="loading-heart">💗</div>
+    <div class="loading-heart">💓</div>
+    <div class="loading-heart">💖</div>
+  </div>
+</div>
+}
+
+<!-- Main Content -->
+@if (!showLoading) {
+<!-- Floating hearts animation -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<header>
+  <nav>
+    <a href="#home" tabindex="1">Home</a>
+    <a href="#story" tabindex="2">Our Story</a>
+    <a href="#gallery" tabindex="3">Gallery</a>
+    <a href="#contact" tabindex="4">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="home">
+    <h1>My Dearest Love 💖</h1>
+    <p class="message">Every moment with you is a treasure I hold close to my heart. This pink paradise is a small token of my endless love for you, my beautiful angel.</p>
+  </section>
+
+  <section id="story">
+    <h2>Our Beautiful Journey</h2>
+    <div style="max-width:700px; margin: 0 auto; font-size: 1.2rem; font-family: 'Dancing Script', cursive; line-height: 2;">
+      <p>My Sweetest,</p>
+      
+      <p>From the moment our paths crossed, my world transformed into something more vibrant and meaningful. Each day with you has been a masterpiece painted with laughter, dreams, and endless affection.</p>
+      
+      <p>You are the melody in my silence, the light in my darkness, and the reason my heart beats with such joy. Every memory we've created together is a precious gem I keep in my soul's treasure chest.</p>
+      
+      <p>With you, I've discovered what true happiness means. You make ordinary moments extraordinary and my life complete.</p>
+      
+      <p style="text-align: right; margin-top: 2rem; color: #e91e63;">Forever yours,<br>Your devoted admirer 💕</p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Our Precious Memories</h2>
+    <div class="gallery" aria-label="Photo gallery of our memories">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Our walks together" />
+      <img src="https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=600&q=80" alt="Holding hands at sunset" />
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="Our romantic picnics" />
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Your beautiful smile" />
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Send Me Your Love</h2>
+    <form (ngSubmit)="onSubmit()" #formRef="ngForm" aria-label="Contact form to send a love message">
+      <label for="name">Your Beautiful Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        [(ngModel)]="contactForm.name"
+        required 
+        placeholder="My dearest..." 
+      />
+
+      <label for="email">Your Email (optional)</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        [(ngModel)]="contactForm.email"
+        placeholder="your@email.com" 
+      />
+
+      <label for="message">Your Love Note</label>
+      <textarea 
+        id="message" 
+        name="message" 
+        [(ngModel)]="contactForm.message"
+        rows="5" 
+        required 
+        placeholder="Write something beautiful and heartfelt..."
+      ></textarea>
+
+      <button 
+        type="submit" 
+        [disabled]="isSubmitting || !formRef.valid"
+        [class.submitting]="isSubmitting"
+      >
+        {{isSubmitting ? 'Sending...' : 'Send With Love'}} 💖
+      </button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>Made with all my 💖 just for you, my precious one.</p>
+</footer>
+
+}
+
+</body>
+</html>
